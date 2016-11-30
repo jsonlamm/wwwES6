@@ -22,18 +22,23 @@ class EventEmitter {
         this.subscribers[eventName].push(eventListener);
     }
 
-    emit (eventName) {
+    emit (eventName, ...args) {
+    // emit (eventName, ...args) { // another way//
         // If there are no subscribers to this event name, why even?
         if (!this.subscribers[eventName]) {
             return;
         }
 
         // Grab the remaining arguments to our emit function.
-        var remainingArgs = [].slice.call(arguments, 1);
+
+        // let remainingArgs = [].slice.call(arguments, 1);
+// console.log(args)
+
+        // let remainingArgs = [...arguments].slice(1) // another way //
 
         // For each subscriber, call it with our arguments.
         this.subscribers[eventName].forEach(function (listener) {
-            listener.apply(null, remainingArgs);
+            listener.apply(null, args);
         });
     }
 }

@@ -16,12 +16,12 @@ const whiteboard = new EventEmitter;
 (function () {
 
     // Ultimately, the color of our stroke;
-    var color;
+    let color;
 
     // The color selection elements on the DOM.
-    var colorElements = [].slice.call(document.querySelectorAll('.marker'));
+    let colorElements = [].slice.call(document.querySelectorAll('.marker'));
 
-    colorElements.forEach(function (el) {
+    colorElements.forEach( (el) => {
 
         // Set the background color of this element
         // to its id (purple, red, blue, etc).
@@ -38,30 +38,30 @@ const whiteboard = new EventEmitter;
 
     });
 
-    var canvas = document.querySelector('#paint');
-    var sketch = document.querySelector('#sketch');
-    var sketchStyle = getComputedStyle(sketch);
+    const canvas = document.querySelector('#paint');
+    const sketch = document.querySelector('#sketch');
+    const sketchStyle = getComputedStyle(sketch);
 
     canvas.width = parseInt(sketchStyle.getPropertyValue('width'));
     canvas.height = parseInt(sketchStyle.getPropertyValue('height'));
 
-    var ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d');
 
     ctx.lineWidth = 5;
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
 
-    var currentMousePosition = {
+    let currentMousePosition = {
         x: 0,
         y: 0
     };
 
-    var lastMousePosition = {
+    let lastMousePosition = {
         x: 0,
         y: 0
     };
 
-    var drawing = false;
+    let drawing = false;
 
     canvas.addEventListener('mousedown', function (e) {
         drawing = true;
@@ -69,7 +69,7 @@ const whiteboard = new EventEmitter;
         currentMousePosition.y = e.pageY - this.offsetTop;
     });
 
-    canvas.addEventListener('mouseup', function () {
+    canvas.addEventListener('mouseup',  () => {
         drawing = false;
     });
 
@@ -87,7 +87,7 @@ const whiteboard = new EventEmitter;
 
     });
 
-    whiteboard.draw = function (start, end, strokeColor, shouldBroadcast) {
+    whiteboard.draw = (start, end, strokeColor, shouldBroadcast)  => {
 
         // Draw the line between the start and end positions
         // that is colored with the given color.
