@@ -1,7 +1,17 @@
 // this is global now
-class whiteboard extends EventEmitter {
-    constructor ()
-};
+// console.log(window.EventEmitter);
+
+// console.log(window.EventEmitter.emit);
+
+// console.log(window.EventEmitter.on);
+
+// class whiteboard extends EventEmitter {
+//     constructor () {
+//         super();
+//     }
+// }
+
+const whiteboard = new EventEmitter;
 
 (function () {
 
