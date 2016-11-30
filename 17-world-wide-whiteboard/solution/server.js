@@ -1,15 +1,15 @@
 
 
-var path = require('path');
+const path = require('path');
 
-var http = require('http');
-var server = http.createServer();
+const http = require('http');
+const server = http.createServer();
 
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
 
-var socketio = require('socket.io'); 
+const socketio = require('socket.io'); 
 
 server.on('request', app);
 
@@ -19,11 +19,11 @@ server.on('request', app);
 // this needs to be below the server.on('request', app) so that our 
 // express app takes precedence over our socekt server for typical 
 // HTTP requests 
-var io = socketio(server);
+const io = socketio(server);
 
 
 // // use socket server as an event emitter in order to listen for new connctions
-io.on('connection', function(socket){
+io.on('connection', (socket) => {
 
 
   //receives the newly connected socket
@@ -32,13 +32,13 @@ io.on('connection', function(socket){
   console.log('socket id: ', socket.id)
 
   //event that runs anytime a socket disconnects
-  socket.on('disconnect', function(){
+  socket.on('disconnect', () => {
     console.log('socket id ' + socket.id + ' has disconnected. : ('); 
   })
 
   // server is receiving draw data from the client here 
   // so we want to broadcast that data to all other connected clients 
-  socket.on('imDrawing', function(start, end, color){
+  socket.on('imDrawing', (start, end, color) => {
     console.log('catching the draw event here')
 
     // we need to emit an event all sockets except the socket that originally emitted the 

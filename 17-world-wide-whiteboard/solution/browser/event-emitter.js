@@ -1,7 +1,14 @@
 // Here is our constructor function, available globally (set to the window object!)
-window.EventEmitter = function () {
-    this.subscribers = {};
-};
+
+// window.EventEmitter = function () {
+//     this.subscribers = {};
+// };
+
+class EventEmitter {
+    constructor () {
+        this.subscribers = {};
+    }
+}
 
 (function (EE) {
 
@@ -41,4 +48,4 @@ window.EventEmitter = function () {
 
     };
 
-})(window.EventEmitter);
+})(EventEmitter);

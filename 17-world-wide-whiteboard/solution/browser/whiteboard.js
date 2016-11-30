@@ -1,5 +1,7 @@
 // this is global now
-window.whiteboard = new window.EventEmitter();
+class whiteboard extends EventEmitter {
+    constructor ()
+};
 
 (function () {
 
