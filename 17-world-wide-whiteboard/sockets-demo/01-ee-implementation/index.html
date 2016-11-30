@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Event Emission</title>
+</head>
+
+<body>
+  <h1>Use the console, Luke.</h1>
+
+  <script>
+  // Implementing (simple) event emitters in the browser.
+  const EventEmitter = function() {
+    this.subscribers = {};
+  };
+
+  EventEmitter.prototype.on = function(eventName, listener) {
+    if (!this.subscribers[eventName]) {
+      this.subscribers[eventName] = [];
+    }
+    this.subscribers[eventName].push(listener);
+  };
+
+  EventEmitter.prototype.emit = function(eventName, ...payloads) {
+    if (this.subscribers[eventName]) {
+      this.subscribers[eventName].forEach(fn => {
+        fn(...payloads);
+      });
+    }
+  };
+  </script>
+</body>
+
+</html>
